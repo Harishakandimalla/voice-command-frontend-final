@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- outer translucent big ring -->
+    <item android:gravity="center">
+        <shape android:shape="oval">
+            <size android:width="420dp" android:height="420dp"/>
+            <solid android:color="#40FFFFFF"/> <!-- translucent, will be tinted by background -->
+        </shape>
+    </item>
+
+    <!-- mid translucent ring (slightly smaller) -->
+    <item android:gravity="center">
+        <shape android:shape="oval">
+            <size android:width="320dp" android:height="320dp"/>
+            <solid android:color="#55FFFFFF"/>
+        </shape>
+    </item>
+
+    <!-- inner white circle -->
+    <item android:gravity="center">
+        <shape android:shape="oval">
+            <size android:width="180dp" android:height="180dp"/>
+            <solid android:color="#FFFFFFFF"/>
+        </shape>
+    </item>
+</layer-list>

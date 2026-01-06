@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_splash_gradient">
+
+    <!-- concentric rings and inner white circle -->
+    <ImageView
+        android:id="@+id/circles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bg_splash_circles"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- star icon centered on top of circles -->
+    <ImageView
+        android:id="@+id/star_icon"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/taskai_star_round"
+        app:layout_constraintTop_toTopOf="@id/circles"
+        app:layout_constraintBottom_toBottomOf="@id/circles"
+        app:layout_constraintStart_toStartOf="@id/circles"
+        app:layout_constraintEnd_toEndOf="@id/circles"
+        android:contentDescription="@string/app_name"/>
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="TaskAI"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/circles"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Subtitle -->
+    <TextView
+        android:id="@+id/appSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Your Intelligent Assistant"
+        android:textColor="#EAF0FF"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/appTitle"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- dots (visual only) -->
+    <LinearLayout
+        android:id="@+id/dotsRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/appSubtitle"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_margin="6dp"
+            android:background="#D6CFF5"
+            android:alpha="0.9"/>
+        <View
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_margin="6dp"
+            android:background="#D6CFF5"/>
+        <View
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_margin="6dp"
+            android:background="#D6CFF5"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

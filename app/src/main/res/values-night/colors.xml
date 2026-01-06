@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text Colors for Dark Theme -->
+    <color name="text_black">#FFFFFFFF</color> <!-- White for dark theme -->
+    <color name="text_gray">#B3FFFFFF</color> <!-- Light gray for dark theme -->
+</resources>

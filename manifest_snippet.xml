@@ -1,0 +1,1 @@
+<receiver android:name=".ReminderReceiver" android:enabled="true" android:exported="false" />

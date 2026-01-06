@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Voice Command AI"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.VoiceCommandAIApp"
+        android:usesCleartextTraffic="true">
+
+        <!-- Splash (Launcher) -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.VoiceCommandAIApp.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Onboarding -->
+        <activity android:name=".OnboardingActivity" android:exported="false" />
+        <activity android:name=".OnboardingSecondActivity" android:exported="false" />
+        <activity android:name=".OnboardingThirdActivity" android:exported="false" />
+        <activity android:name=".OnboardingFourthActivity" android:exported="false" />
+        <activity android:name=".OnboardingFifthActivity" android:exported="false" />
+        <activity android:name=".OnboardingFinalActivity" android:exported="false" />
+
+        <!-- Auth -->
+        <activity android:name=".SignupActivity" android:exported="false" />
+        <activity android:name=".VerificationActivity" android:exported="false" />
+        <activity android:name=".LoginActivity" android:exported="false" />
+        <activity android:name=".CompleteProfileActivity" android:exported="false" />
+        <activity android:name=".ForgotPasswordActivity" android:exported="false" />
+        <activity android:name=".OtpVerificationActivity" android:exported="false" />
+        <activity android:name=".ResetPasswordActivity" android:exported="false" />
+
+        <!-- Home & Tasks -->
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".EditTaskActivity" />
+        <activity android:name=".SetPriorityActivity" />
+        <activity android:name=".CategoriesActivity" />
+        <activity android:name=".AiSuggestionsActivity" />
+        <activity android:name=".AiAssistantActivity" />
+        <activity android:name=".ListeningActivity" />
+        <activity android:name=".TaskCreatedActivity" />
+        <activity android:name=".UnderstandingActivity" />
+        <activity android:name=".MyTasksActivity" />
+        <activity android:name=".CreateTaskActivity" />
+        <activity android:name=".NotificationsActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".VoiceCommandsActivity" />
+        <activity android:name=".SubscriptionActivity" />
+        <activity android:name=".ThemeSettingsActivity" />
+        <activity android:name=".NotificationSettingsActivity" android:exported="false" />
+        <activity android:name=".WeeklySummaryActivity" />
+        <activity android:name=".NotificationSoundActivity" />
+        <activity android:name=".HelpSupportActivity" />
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".PrivacyPolicyActivity" />
+        <activity android:name=".CalendarActivity" />
+        <activity
+            android:name=".TaskDetailsActivity"
+            android:exported="false" />
+
+        <!-- Receivers -->
+        <receiver
+            android:name=".WeeklySummaryReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".ReminderReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver
+            android:name=".BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

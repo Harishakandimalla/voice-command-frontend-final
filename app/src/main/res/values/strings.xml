@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App name -->
+    <string name="app_name">Voice Command Ai app</string>
+
+    <!-- Buttons / UI -->
+    <string name="get_started">Get Started</string>
+    <string name="start">Start</string>
+
+    <!-- Onboarding texts (examples used in adapter) -->
+    <string name="onboard_title_1">Welcome to TaskAI</string>
+    <string name="onboard_desc_1">Your intelligent voice-powered task assistant that schedules, organizes, and reminds you automatically</string>
+
+    <string name="onboard_title_2">Create tasks by voice</string>
+    <string name="onboard_desc_2">Just say it — create and schedule tasks hands-free.</string>
+
+    <string name="onboard_title_3">Smart reminders</string>
+    <string name="onboard_desc_3">AI-powered reminders that adapt to your routines.</string>
+
+    <!-- accessibility -->
+    <string name="action_next">Next</string>
+</resources>
