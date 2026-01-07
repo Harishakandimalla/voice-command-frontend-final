@@ -5,9 +5,11 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -19,6 +21,8 @@ class ProfileActivity : AppCompatActivity() {
 
     private lateinit var profileImageView: CircleImageView
     private lateinit var etUserName: EditText
+    private lateinit var etNickname: EditText
+    private lateinit var etOccupation: EditText
     private lateinit var sessionManager: SessionManager
 
     /* ---------------- PERMISSIONS ---------------- */
@@ -59,6 +63,8 @@ class ProfileActivity : AppCompatActivity() {
 
         profileImageView = findViewById(R.id.iv_profile_avatar)
         etUserName = findViewById(R.id.et_name)
+        etNickname = findViewById(R.id.et_nickname)
+        etOccupation = findViewById(R.id.et_occupation)
 
         // Back
         findViewById<ImageView>(R.id.iv_back_arrow).setOnClickListener {
@@ -70,9 +76,13 @@ class ProfileActivity : AppCompatActivity() {
             showBottomSheet()
         }
 
+        // Save Changes
+        findViewById<Button>(R.id.btn_save_changes_profile).setOnClickListener {
+            saveProfileChanges()
+        }
+
         // Load saved data
-        loadProfileImage()
-        loadUserName()
+        loadProfileData()
     }
 
     /* ---------------- BOTTOM SHEET ---------------- */
@@ -136,7 +146,7 @@ class ProfileActivity : AppCompatActivity() {
         selectImageFromGallery.launch("image/*")
     }
 
-    /* ---------------- PROFILE IMAGE ---------------- */
+    /* ---------------- PROFILE DATA ---------------- */
 
     private fun saveProfileImage(uri: Uri) {
         val prefs =
@@ -144,13 +154,32 @@ class ProfileActivity : AppCompatActivity() {
         prefs.edit().putString("profile_image_uri", uri.toString()).apply()
     }
 
-    private fun loadProfileImage() {
+    private fun loadProfileData() {
         val prefs =
             getSharedPreferences("user_profile_prefs", Context.MODE_PRIVATE)
         val uriString = prefs.getString("profile_image_uri", null)
         if (uriString != null) {
             profileImageView.setImageURI(Uri.parse(uriString))
         }
+        etUserName.setText(sessionManager.userName)
+        etNickname.setText(prefs.getString("USER_NICKNAME", ""))
+        etOccupation.setText(prefs.getString("USER_OCCUPATION", ""))
+    }
+
+    private fun saveProfileChanges() {
+        val newName = etUserName.text.toString().trim()
+        val newNickname = etNickname.text.toString().trim()
+        val newOccupation = etOccupation.text.toString().trim()
+
+        sessionManager.saveUser(sessionManager.userId, newName, "")
+
+        val prefs = getSharedPreferences("user_profile_prefs", Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.putString("USER_NICKNAME", newNickname)
+        editor.putString("USER_OCCUPATION", newOccupation)
+        editor.apply()
+
+        Toast.makeText(this, "Changes saved successfully", Toast.LENGTH_SHORT).show()
     }
 
     private fun removeProfileImage() {
@@ -158,17 +187,5 @@ class ProfileActivity : AppCompatActivity() {
         val prefs =
             getSharedPreferences("user_profile_prefs", Context.MODE_PRIVATE)
         prefs.edit().remove("profile_image_uri").apply()
-    }
-
-    /* ---------------- USER NAME ---------------- */
-
-    private fun loadUserName() {
-        etUserName.setText(sessionManager.userName)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        // ✅ Save name when user leaves screen
-        sessionManager.saveUser(sessionManager.userId, etUserName.text.toString().trim())
     }
 }

@@ -7,16 +7,27 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.voicecommandaiapp.utils.SessionManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SettingsActivity : AppCompatActivity() {
+
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
+        sessionManager = SessionManager(this)
+
         setupBottomNav()
         setupSettingsItems()
+        loadUserProfile()
+    }
+
+    private fun loadUserProfile() {
+        findViewById<TextView>(R.id.tv_user_name_settings)?.text = sessionManager.userName
+        findViewById<TextView>(R.id.tv_user_email_settings)?.text = sessionManager.userEmail
     }
 
     private fun setupSettingsItems() {
@@ -88,7 +99,7 @@ class SettingsActivity : AppCompatActivity() {
         findViewById<View>(R.id.setting_about)?.let {
             it.findViewById<ImageView>(R.id.iv_setting_icon)?.setImageResource(R.drawable.ic_about)
             it.findViewById<TextView>(R.id.tv_setting_title)?.text = "About"
-            it.setOnClickListener {
+            it.setOnClickListener { 
                 startActivity(Intent(this, AboutActivity::class.java))
             }
         }

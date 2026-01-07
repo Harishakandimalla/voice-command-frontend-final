@@ -28,12 +28,8 @@ class LoginActivity : AppCompatActivity() {
 
         sessionManager = SessionManager(this)
 
-        // 🚀 STRICT RULE: No Auto Login. User must login manually.
-        // Session check removed to force login screen.
-
         setContentView(R.layout.activity_login)
 
-        // Bind views
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
         btnLogin = findViewById(R.id.btnSignIn)
@@ -68,15 +64,16 @@ class LoginActivity : AppCompatActivity() {
                     LoginRequest(email, password)
                 )
 
-                if (response.ok && response.user_id != null) {
+                // ✅ CORRECT CHECK
+                if (response.ok && response.user != null) {
 
                     // ✅ SAVE USER SESSION
                     sessionManager.saveUser(
-                        response.user_id,
-                        response.user_name ?: "User"
+                        response.user.id,
+                        response.user.name,
+                        email
                     )
 
-                    // ✅ MARK ONBOARDING DONE
                     sessionManager.setOnboardingCompleted()
 
                     Toast.makeText(
@@ -85,7 +82,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
 
-                    // ✅ GO TO HOME (CLEAR BACKSTACK)
+                    // ✅ GO TO HOME PAGE
                     startActivity(
                         Intent(this@LoginActivity, HomeActivity::class.java)
                             .addFlags(
@@ -97,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(
                         this@LoginActivity,
-                        response.message ?: "Invalid credentials",
+                        response.error ?: "Invalid credentials",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

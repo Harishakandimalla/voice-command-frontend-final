@@ -37,6 +37,13 @@ class NotificationsActivity : AppCompatActivity() {
         setupTabs()
         loadNotifications()
         setupBottomNavigation()
+        setupClickListeners()
+    }
+
+    private fun setupClickListeners() {
+        binding.ivSettingsGear.setOnClickListener {
+            startActivity(Intent(this, NotificationSettingsActivity::class.java))
+        }
     }
 
     private fun setupBottomNavigation() {

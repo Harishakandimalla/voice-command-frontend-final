@@ -13,10 +13,14 @@ class SessionManager(context: Context) {
     val userName: String
         get() = prefs.getString("USER_NAME", "") ?: ""
 
-    fun saveUser(id: Int, name: String) {
+    val userEmail: String
+        get() = prefs.getString("USER_EMAIL", "") ?: ""
+
+    fun saveUser(id: Int, name: String, email: String) {
         prefs.edit()
             .putInt("USER_ID", id)
             .putString("USER_NAME", name)
+            .putString("USER_EMAIL", email)
             .apply()
     }
 

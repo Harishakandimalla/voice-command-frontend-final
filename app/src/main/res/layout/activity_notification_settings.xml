@@ -1,34 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".NotificationSettingsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.VoiceCommandAiapp.AppBarOverlay"
-        app:layout_constraintTop_toTopOf="parent">
+        android:theme="@style/Theme.VoiceCommandAiapp.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.VoiceCommandAiapp.PopupOverlay"
-            app:title="Notification Settings" />
+            app:popupTheme="@style/Theme.VoiceCommandAiapp.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,45 +32,28 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_enable_notifications"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="PUSH NOTIFICATIONS"
-                android:textAppearance="?attr/textAppearanceCaption"
-                android:layout_marginBottom="8dp"/>
+                android:text="Enable / Disable Notifications"
+                android:checked="true"/>
 
-            <include layout="@layout/item_notification_toggle"
-                android:id="@+id/ai_suggestions" />
-            <include layout="@layout/item_notification_toggle"
-                android:id="@+id/task_reminders" />
-            <include layout="@layout/item_notification_toggle"
-                android:id="@+id/activity_updates" />
-            <include layout="@layout/item_notification_toggle"
-                android:id="@+id/new_features" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_reminder_alerts"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="PREFERENCES"
-                android:textAppearance="?attr/textAppearanceCaption"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="8dp"/>
+                android:text="Reminder Alerts"
+                android:checked="true"/>
 
-            <include layout="@layout/item_notification_preference"
-                android:id="@+id/notification_sound" />
-            <include layout="@layout/item_notification_preference"
-                android:id="@+id/weekly_summary" />
-            <include layout="@layout/item_notification_toggle"
-                android:id="@+id/snooze_notifications" />
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_sound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sound On/Off"
+                android:checked="true"/>
 
         </LinearLayout>
     </ScrollView>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
